@@ -1,57 +1,21 @@
-import React from "react";
-import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
+import React, {useState} from "react";
+import useStorage from "./hooks/storage";
 
-const App = (props) => {
+function App() {
+  const [studentName] = useStorage();
+  const [tex, setTex] = useState("");
   return (
-    <BrowserRouter>
+    <div>
+      <div>学生一覧: [ {studentName.toString()} ]</div>
+      <div>追加する名前を入力してください。</div>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">DashBoard</Link>
-          </li>
-        </ul>
-        <hr />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/dashboard">
-            <DashBoard />
-          </Route>
-        </Switch>
+        <input type="text" id="tttext"  />
       </div>
-    </BrowserRouter>
+      <button>確定</button>
+      <div>追加する名前: {tex}</div>
+      <div>新しい一覧: [ {studentName.toString()} ]</div>
+    </div>
   );
-};
+}
 
-const Home = () => {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-};
-const About = () => {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-};
-const DashBoard = () => {
-  return (
-    <div>
-      <h2>DashBoard</h2>
-    </div>
-  );
-};
 export default App;
